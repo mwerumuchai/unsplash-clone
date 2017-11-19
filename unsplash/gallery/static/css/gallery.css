@@ -1,3 +1,17 @@
 h1 {
-  color: purple;
+  color: #000;
+}
+
+#navigate {
+  background-color: #fff;
+  border: #fff;
+}
+
+#camera {
+  font-size: 25px;
+  color: #000;
+}
+
+#collapse {
+  color: #000;
 }
