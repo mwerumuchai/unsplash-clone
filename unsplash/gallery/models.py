@@ -35,6 +35,30 @@ class Gallery(models.Model):
     user = models.ForeignKey(User)
     tags = models.ManyToManyField(Tags)
     upload_date = models.DateTimeField(auto_now_add=True)
+    photo = models.ImageField(upload_to = 'photos/')
+
+    @classmethod
+    def new_gallery(cls):
+        today = dt.date.today()
+        gallery = cls.objects.filter(upload_date__date = today)
+        return gallery
+
+    @classmethod
+    def trending_now(cls, date):
+        gallery = cls.objects.filter(upload_date__date = date)
+        return gallery
+
+    @classmethod
+    def search_by_title(cls,search_term):
+        gallery = cls.objects.filter(title__icontains=search_term)
+        return gallery
+
+    @classmethod
+    def get_images(cls):
+        gallery = cls.objects.all()
+        return gallery
+
+
 
     def __str__(self):
         return self.location
