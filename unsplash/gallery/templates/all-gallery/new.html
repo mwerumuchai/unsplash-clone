@@ -1,1 +1,27 @@
-{%extends 'all-gallery/base.html'%} {% block content %} {{block.super}} {% endblock %}
+{%extends 'all-gallery/base.html'%} {% block content %} {{block.super}}
+
+<!-- loop through photos -->
+<div class="container">
+  <h1>Unsplash</h1>
+  <h4>Beautiful, free photos. <br>
+Gifted by the world’s most generous community of photographers. </h4> <br>
+  <button type="button" class="btn btn-default">Submit a Photo</button> <br>
+</div>
+
+<!-- display photos -->
+<div class="container">
+
+  {% for photo_item in gallery %}
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <img src="{{photo_item.photo.url}}" class="img-responsive" alt="Image">
+  </div>
+</div>
+<!-- {% for tag in photo_item.tags.all %}
+<button type="button" name="button"><small>{{tag.name}}</small></button> {% endfor %} -->
+
+<!-- page empty -->
+{% empty %}
+<div class="row">
+  <h2 class="text-center">There is no Photos available</h2>
+</div>
+{% endfor %} {% endblock %}
