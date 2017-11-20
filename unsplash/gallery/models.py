@@ -31,34 +31,24 @@ class Tags(models.Model):
         return self.name
 
 class Gallery(models.Model):
-    location = models.CharField(max_length = 60)
+    name = models.CharField(max_length = 60)
     user = models.ForeignKey(User)
     tags = models.ManyToManyField(Tags)
     upload_date = models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(upload_to = 'photos/')
 
-    @classmethod
-    def new_gallery(cls):
-        today = dt.date.today()
-        gallery = cls.objects.filter(upload_date__date = today)
-        return gallery
+    def __str__(self):
+        return self.name
 
-    @classmethod
-    def trending_now(cls, date):
-        gallery = cls.objects.filter(upload_date__date = date)
-        return gallery
-
-    @classmethod
-    def search_by_title(cls,search_term):
-        gallery = cls.objects.filter(title__icontains=search_term)
-        return gallery
+    def save_photo(self):
+        self.save()
 
     @classmethod
     def get_images(cls):
         gallery = cls.objects.all()
         return gallery
 
-
-
-    def __str__(self):
-        return self.location
+    @classmethod
+    def search_by_title(cls,search_term):
+        gallery = cls.objects.filter(title__icontains=search_term)
+        return gallery
