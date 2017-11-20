@@ -1,1 +1,1 @@
-web: gunicorn unsplash_clone.wsgi
+web: gunicorn unsplash_clone.wsgi --log-file -
