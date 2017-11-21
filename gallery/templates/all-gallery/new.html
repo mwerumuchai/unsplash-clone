@@ -57,8 +57,8 @@ Gifted by the world’s most generous community of photographers. </h4> <br>
 <!-- display photos -->
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
-      {% for photo_item in gallery %}
+    {% for photo_item in gallery %}
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
       <a class="lightbox" href="#pic">
       <img src="{{photo_item.photo.url}} " class="img-responsive " alt="Image "></a> {% for tag in photo_item.tags.all %}
       <button type="button " name="button "><small>{{tag.name}}</small></button> {% endfor %}
