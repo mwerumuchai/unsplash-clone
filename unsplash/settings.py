@@ -90,7 +90,7 @@ DATABASES = {
     }
 }
 
-import dj database url
+import dj_database_url
 db from env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
