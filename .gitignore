@@ -2,3 +2,4 @@ DS_Store
 virtual/
 *.pyc
 staticfiles
+.env

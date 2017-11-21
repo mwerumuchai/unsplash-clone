@@ -29,12 +29,13 @@ def new_photos(request):
 # search photos
 def search_results(request):
 
-    if 'gallery' in request.GET and request.GET["gallery"]:
-        search_term = request.GET.get("gallery")
-        searched_gallery = Gallery.search_by_title(search_term)
+    if 'tag' in request.GET and request.GET["tag"]:
+        search_term = request.GET.get("tag")
+        searched_tags = Tag.search_by_tag(search_term)
+        photos = Photo.objects,filter(tags = searched_tags).all()
         message = f"{search_term}"
 
-        return render(request, 'all-gallery/search.html',{"message":message,"gallery": searched_gallery})
+        return render(request, 'all-gallery/search.html',{"message":message,"tags": searched_tags, "photos":photos})
     else:
         message = "No photos searched"
         return render(request, 'all-gallery/search.html',{"message":message})
