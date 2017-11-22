@@ -2,19 +2,23 @@
 <div class="container">
 
   <div class="row">
-    {% if photos%}
-    <h2>Found {{ photos|length }} of searched term {{message}}</h2> {% else %}
-    <h2> Found 0 Photos for the search term {{message}}</h2> {% endif %}
+    {% for tag in tags %}
+    <h2>Found {{ tags.count }} of searched term {{message}}</h2> {% endfor %}
 
   </div>
 
-  <div class="row">
-
-    {% if photos %} {% for gallery in photos %}
-    <div class="col-sm-6 col-md-3">
-      <h1> <a href="{% url 'gallery' gallery.id %}">{{gallery.location}}</a></h1>
-    </div>
-    {% endfor %} {% endif %}
+  <div class="container">{% for gallery_item in gallery %}
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+      <a class="lightbox" href="#pic">
+        <img src="{{gallery_item.image.url}} " class="img-responsive " alt="Image "></a> {% for tag in gallery_item.tags.all %}
+      <button type="button " name="button "><small>{{tag.name}}</small></button> {% endfor %}
+      <div class="col-md-6 col-sm-12 col-xs-12 col-lg-4">
+        <div class="lightbox-target" id="pic">
+          <img src="{{gallery_item.image.url}} " class="img-responsive " alt="Image ">
+          <a class="lightbox-close" href="#"></a>
+        </div>
+      </div>
+    </div>{% endfor%}
   </div>
 </div>
 {% endblock %}

@@ -1,42 +1,13 @@
 {%extends 'all-gallery/base.html'%} {% block content %} {{block.super}} {% load static %}
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-1">
-      <h5 class="text-center"><img src="{% static "images/business.jpeg" %}" alt="My image" height="40px">Business</h5>
-    </div>
-    <div class="col-xs-1">
-      <h5 class="text-center"><img src="{% static "images/computer.jpeg" %}" alt="My image" height="40px" width="100%">Computer</h5>
-    </div>
-    <div class="col-xs-1">
-      <h5 class="text-center"><img src="{% static "images/nature.jpeg" %}" alt="My image" height="40px" width="100%">Nature</h5>
-    </div>
-    <div class="col-xs-1">
-      <h5 class="text-center"><img src="{% static "images/love.jpeg" %}" alt="My image" height="40px" width="100%">Love</h5>
-    </div>
-    <div class="col-xs-1">
-      <h5 class="text-center"><img src="{% static "images/house.jpeg" %}" alt="My image" height="40px" width="100%">House</h5>
-    </div>
-    <div class="col-xs-1">
-      <h5 class="text-center"><img src="{% static "images/landscape.jpeg" %}" alt="My image" height="40px" width="100%">Landscape</h5>
-    </div>
-    <div class="col-xs-1">
-      <h5 class="text-center"><img src="{% static "images/cat.jpeg" %}" alt="My image" height="40px" width="100%">Cat</h5>
-    </div>
-    <div class="col-xs-1">
-      <h5 class="text-center"><img src="{% static "images/happy.jpeg" %}" alt="My image" height="40px" width="100%">Happy</h5>
-    </div>
-    <div class="col-xs-1">
-      <h5 class="text-center"><img src="{% static "images/health.jpeg" %}" alt="My image" height="40px" width="100%">Health</h5>
-    </div>
-    <div class="col-xs-1">
-      <h5 class="text-center"><img src="{% static "images/autumn.jpeg" %}" alt="My image" height="40px" width="100%">Autumn</h5>
-    </div>
-    <div class="col-xs-1">
-      <h5 class="text-center"><img src="{% static "images/friends.jpeg" %}" alt="My image" height="40px" width="100%">Friends</h5>
-    </div>
-    <div class="col-xs-1">
-      <h5 class="text-center"><img src="{% static "images/office.jpeg" %}" alt="My image" height="40px" width="100%">Office</h5>
-    </div>
+    <ul>
+      {% for tag in tags%}
+      <div class="col-md-1">
+        <a href="{% url 'tag' tag.id%}"><img src="{{tag.image.url}}" alt="{{tag.name}}" height="40px" width="100%"></a> {{tag.name}}
+      </div>
+      {% endfor %}
+    </ul>
   </div>
 </div>
 
@@ -55,18 +26,15 @@ Gifted by the world’s most generous community of photographers. </h4> <br>
   <h4>New</h4>
 </div>
 <!-- display photos -->
-<div class="container">
-  <div class="row">
-    {% for photo_item in gallery %}
-    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-      <a class="lightbox" href="#pic">
-      <img src="{{photo_item.photo.url}} " class="img-responsive " alt="Image "></a> {% for tag in photo_item.tags.all %}
-      <button type="button " name="button "><small>{{tag.name}}</small></button> {% endfor %}
-      <div class="col-md-6 col-sm-12 col-xs-12 col-lg-4">
-        <div class="lightbox-target" id="pic">
-          <img src="{{photo_item.photo.url}} " class="img-responsive " alt="Image ">
-          <a class="lightbox-close" href="#"></a>
-        </div>
+<div class="container">{% for gallery_item in gallery %}
+  <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+    <a class="lightbox" href="#pic">
+      <img src="{{gallery_item.image.url}} " class="img-responsive " alt="Image "></a> {% for tag in gallery_item.tags.all %}
+    <button type="button " name="button "><small>{{tag.name}}</small></button> {% endfor %}
+    <div class="col-md-6 col-sm-12 col-xs-12 col-lg-4">
+      <div class="lightbox-target" id="pic">
+        <img src="{{gallery_item.image.url}} " class="img-responsive " alt="Image ">
+        <a class="lightbox-close" href="#"></a>
       </div>
     </div>
   </div>

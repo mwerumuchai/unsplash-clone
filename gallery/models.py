@@ -26,6 +26,26 @@ class User(models.Model):
 
 class Tags(models.Model):
     name = models.CharField(max_length =30)
+    image = models.ImageField(upload_to = 'photos/')
+
+    def __str__(self):
+        return self.name
+
+    def save_tag(self):
+        self.save()
+
+    def delete_tag(self):
+        self.delete()
+
+    @classmethod
+    def display_tags(cls):
+        all_tags = cls.objects.all()
+        return all_tags
+
+    @classmethod
+    def search_for_tag(cls,search_term):
+        tags = cls.objects.filter(name__icontains=search_term)
+        return tags
 
     def __str__(self):
         return self.name
@@ -35,7 +55,7 @@ class Gallery(models.Model):
     user = models.ForeignKey(User)
     tags = models.ManyToManyField(Tags)
     upload_date = models.DateTimeField(auto_now_add=True)
-    photo = models.ImageField(upload_to = 'photos/')
+    image = models.ImageField(upload_to = 'photos/')
 
     def __str__(self):
         return self.name
@@ -50,5 +70,5 @@ class Gallery(models.Model):
 
     @classmethod
     def search_by_title(cls,search_term):
-        gallery = cls.objects.filter(title__icontains=search_term)
+        gallery = cls.objects.filter(tags__icontains=search_term)
         return gallery

@@ -1,0 +1,27 @@
+{% extends 'all-gallery/base.html' %} {% load static %} {% block styles %}
+<!--block styles-->
+{{block.super}} {% endblock %} {% block content %} {{block.super}}
+<div class="row">
+  {% for tag in all_tags %}
+  <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1" id="tag">
+    <h4 class="text-center">{{tag.name}}</h4>
+    <a href="{% url 'tag' tag.id %}"><img src="{{tag.image.url}}" alt="{{tag.name}}" class="" id="cover"></a>
+  </div>
+  {% endfor %}
+</div>
+<div class="container">
+  <div class="row" id="header">
+    <h1>{{tag.name}} images</h1> {% if gallery %}
+    <h3>{{gallery|length}} free {{tag.name}} images</h3> {% endif %}
+  </div>
+</div>
+{% if gallery %} {% for photo in gallery %}
+<div class="col-sm-6 col-md-4 col-lg-4">
+  <a href="{% url 'photo' photo.id %}"><img src="{{photo.image.url}}" class="img-responsive" alt="{{photo.title}}" id="space"><button class="btn" id="arrow"><i class="glyphicon glyphicon-arrow-down"></i></button></a>
+</div>
+{% endfor %} {% else %}
+<h2 class="text-center">No images found for {{tag.name}}</h2> {% endif %}
+</div>
+</div>
+</div>
+{% endblock %}
