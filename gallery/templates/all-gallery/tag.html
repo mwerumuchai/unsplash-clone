@@ -1,7 +1,7 @@
 {% extends 'all-gallery/base.html' %} {% load static %} {% block styles %}
 <!--block styles-->
 {{block.super}} {% endblock %} {% block content %} {{block.super}}
-<div class="row">
+<!-- <div class="row">
   {% for tag in all_tags %}
   <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1" id="tag">
     <h4 class="text-center">{{tag.name}}</h4>
@@ -23,5 +23,18 @@
 <h2 class="text-center">No images found for {{tag.name}}</h2> {% endif %}
 </div>
 </div>
+</div> -->
+<div class="container">{% for gallery_item in gallery %}
+  <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+    <a class="lightbox" href="#pic">
+      <img src="{{gallery_item.image.url}} " class="img-responsive " alt="Image "></a> {% for tag in gallery_item.tags.all %}
+    <button type="button " name="button "><small>{{tag.name}}</small></button> {% endfor %}
+    <div class="col-md-6 col-sm-12 col-xs-12 col-lg-4">
+      <div class="lightbox-target" id="pic">
+        <img src="{{gallery_item.image.url}} " class="img-responsive " alt="Image ">
+        <a class="lightbox-close" href="#"></a>
+      </div>
+    </div>
+  </div>{% endfor%}
 </div>
 {% endblock %}

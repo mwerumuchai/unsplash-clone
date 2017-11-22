@@ -1,8 +1,20 @@
 {%extends 'all-gallery/base.html'%} {% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <ul>
+      {% for tag in tags%}
+      <div class="col-md-1">
+        <a href="{% url 'tag' tag.id%}"><img src="{{tag.image.url}}" alt="{{tag.name}}" height="40px" width="100%"></a> {{tag.name}}
+      </div>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
 <div class="container">
 
-  <div class="row">
-    <h2>Found {{gallery.count}} related Images</h2>
+  <div class="row text-left">
+    <h2><strong>{{message}} Images</strong></h2><br>
+    <h3>{{gallery.count}} free {{message}} images</h3>
   </div>
 
   <div class="container">{% for gallery_item in gallery %}
