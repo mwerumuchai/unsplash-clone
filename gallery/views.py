@@ -45,7 +45,7 @@ def search_results(request):
         gallery = Gallery.objects.filter(tags = searched_tags).all()
         message = f"{search_term}"
 
-        return render(request, 'all-gallery/search.html',{"message":message,"tags": searched_tags, "gallery":gallery})
+        return render(request, 'all-gallery/search.html',{"message":message,"searched_tags": searched_tags, "gallery":gallery})
     else:
         message = "No photos searched"
         return render(request, 'all-gallery/search.html',{"message":message})
