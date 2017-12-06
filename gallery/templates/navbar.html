@@ -26,12 +26,12 @@
         </div>
         <!-- search form end -->
         <div class="navbar-collapse collapse-right">
-          <ul class="nav navbar-nav" id="navigation">
+          <ul class="nav navbar-nav" id="navigation" style="color: black;">
             <li><a href="{% url 'newPhotos' %}">Home</a></li>
-            <li><a href="/">Collections</a></li>
+            <li><a href="{% url 'collections' %}">Collections</a></li>
             <li><a href="/">Explore</a></li>
             <li><a href="/">About</a></li>
-            <li><button class="btn grey" id="glyphicon"><i class="glyphicon glyphicon-option-horizontal"></i></button></li>
+            <li><button class="btn" id="glyphicon"><i class="glyphicon glyphicon-option-horizontal"></i></button></li>
             <li><a href="/">Login</a></li>
             <li><button type="button" class="btn btn-success" id="join">Join free</button></li>
           </ul>

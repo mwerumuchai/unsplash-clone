@@ -1,0 +1,27 @@
+{%extends 'all-gallery/base.html'%} {% block content %}
+<div class="container">
+  <div class="container text-left">
+    <h1>Collections</h1>
+    <h4>Beautiful, free pictures of the week. <br>
+Explore the world through collections of beautiful HD pictures free to use under the Unsplash License.</h4>
+  </div>
+  <div class="col-md-12">
+    <div class="photo-div">
+
+      {% for gallery_item in gallery %}
+      <div class="image-container">
+        <a href="{% url 'gallery' gallery_item.id %}">
+          <div class="none"></div>
+          <img src="{{gallery_item.image.url}}" alt="Image" class="img-responsive home-image" id="myImg">
+        </a>
+      </div>
+      {% empty %}
+      <div class="row">
+        <h2 class="text-center">There are no images</h2>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}
