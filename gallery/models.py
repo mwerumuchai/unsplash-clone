@@ -52,10 +52,11 @@ class Tags(models.Model):
 
 class Gallery(models.Model):
     name = models.CharField(max_length = 60)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User,null=True)
     tags = models.ManyToManyField(Tags)
     upload_date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to = 'photos/')
+    location = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
         return self.name
