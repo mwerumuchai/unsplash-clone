@@ -1,40 +1,27 @@
-{% extends 'all-gallery/base.html' %} {% load static %} {% block styles %}
-<!--block styles-->
-{{block.super}} {% endblock %} {% block content %} {{block.super}}
-<!-- <div class="row">
-  {% for tag in all_tags %}
-  <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1" id="tag">
-    <h4 class="text-center">{{tag.name}}</h4>
-    <a href="{% url 'tag' tag.id %}"><img src="{{tag.image.url}}" alt="{{tag.name}}" class="" id="cover"></a>
-  </div>
-  {% endfor %}
-</div>
+{% extends 'all-gallery/base.html' %} {% load static %} {% block styles %} {{block.super}}
+<link href="https://fonts.googleapis.com/css?family=Varela" rel="stylesheet"> {% endblock %}
+
+<!-- Content block -->
+{% block content %} {{block.super}}
 <div class="container">
-  <div class="row" id="header">
-    <h1>{{tag.name}} images</h1> {% if gallery %}
-    <h3>{{gallery|length}} free {{tag.name}} images</h3> {% endif %}
-  </div>
-</div>
-{% if gallery %} {% for photo in gallery %}
-<div class="col-sm-6 col-md-4 col-lg-4">
-  <a href="{% url 'photo' photo.id %}"><img src="{{photo.image.url}}" class="img-responsive" alt="{{photo.title}}" id="space"><button class="btn" id="arrow"><i class="glyphicon glyphicon-arrow-down"></i></button></a>
-</div>
-{% endfor %} {% else %}
-<h2 class="text-center">No images found for {{tag.name}}</h2> {% endif %}
-</div>
-</div>
-</div> -->
-<div class="container">{% for gallery_item in gallery %}
-  <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-    <a class="lightbox" href="#pic">
-      <img src="{{gallery_item.image.url}} " class="img-responsive " alt="Image "></a> {% for tag in gallery_item.tags.all %}
-    <button type="button " name="button "><small>{{tag.name}}</small></button> {% endfor %}
-    <div class="col-md-6 col-sm-12 col-xs-12 col-lg-4">
-      <div class="lightbox-target" id="pic">
-        <img src="{{gallery_item.image.url}} " class="img-responsive " alt="Image ">
-        <a class="lightbox-close" href="#"></a>
-      </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h1 class="tags">{{tag.name}}</h1>
     </div>
-  </div>{% endfor%}
+  </div>
+
+  <div class="row">
+
+    {% for gallery_item in gallery %}
+
+    <div class="col-md-4 col-lg-4">
+      <a href="{% url 'gallery' gallery_item.id %}">
+        <img src="{{gallery_item.image.url}}" alt="Image" class="img-responsive home-image" id="myImg">
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
 </div>
+
 {% endblock %}
