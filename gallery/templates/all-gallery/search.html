@@ -16,19 +16,25 @@
     <h2><strong>{{message}} Images</strong></h2><br>
     <h3>{{gallery.count}} free {{message}} images</h3>
   </div>
+</div>
+<div class="col-md-12">
+  <div class="photo-div">
 
-  <div class="container">{% for gallery_item in gallery %}
-    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-      <a class="lightbox" href="#pic">
-        <img src="{{gallery_item.image.url}} " class="img-responsive " alt="Image "></a> {% for tag in gallery_item.tags.all %}
-      <button type="button " name="button "><small>{{tag.name}}</small></button> {% endfor %}
-      <div class="col-md-6 col-sm-12 col-xs-12 col-lg-4">
-        <div class="lightbox-target" id="pic">
-          <img src="{{gallery_item.image.url}} " class="img-responsive " alt="Image ">
-          <a class="lightbox-close" href="#"></a>
-        </div>
-      </div>
-    </div>{% endfor%}
+    {% for gallery_item in gallery %}
+    <div class="image-container">
+      <a href="{% url 'gallery' gallery_item.id %}">
+        <div class="none"></div>
+        <img src="{{gallery_item.image.url}}" alt="Image" class="img-responsive home-image">
+      </a>
+    </div>
+    {% empty %}
+    <div class="row">
+      <h2 class="text-center">There are no images</h2>
+    </div>
+    {% endfor %}
+
   </div>
 </div>
+</div>
+
 {% endblock %}
