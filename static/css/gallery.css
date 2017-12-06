@@ -1,4 +1,18 @@
+body, html {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
 h1 {
+  color: #000;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #000;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
   color: #000;
 }
 
@@ -13,17 +27,14 @@ h1 {
   text-align: center;
 }
 
+#navigation:hover {
+  color: #000;
+  cursor: pointer;
+}
+
 #camera {
   font-size: 25px;
   color: #000;
-}
-
-.navbar-inverse .navbar-nav>li>a {
-  color: #000;
-}
-
-.navbar-inverse .navbar-nav>li>a:hover {
-  color: #999;
 }
 
 #join {
@@ -55,131 +66,154 @@ h1 {
   padding: 15px;
 }
 
-/*modal*/
+/* photos */
 
-/*Eliminates padding, centers the thumbnail */
-
-/*Eliminates padding, centers the thumbnail */
-
-body, html {
-  padding: 0;
-  margin: 0;
-  text-align: center;
+.photo-div {
+  position: relative;
+  margin-top: 1%;
+  -webkit-column-count: 3;
+  /* Chrome, Safari, Opera */
+  -moz-column-count: 3;
+  /* Firefox */
+  column-count: 3;
 }
 
-/* Styles the thumbnail */
-
-a.lightbox img {
-  height: 300px;
-  border: 3px solid white;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, .3);
-  margin: 44px 10px 10px 10px;
-}
-
-/* Styles the lightbox, removes it from sight and adds the fade-in transition */
-
-.lightbox-target {
-  position: fixed;
-  top: -10%;
+.photo-div img {
   width: 100%;
-  background: rgba(0, 0, 0, .7);
-  width: 40%;
-  opacity: 0;
-  -webkit-transition: opacity .5s ease-in-out;
-  -moz-transition: opacity .5s ease-in-out;
-  -o-transition: opacity .5s ease-in-out;
-  transition: opacity .5s ease-in-out;
-  overflow: hidden;
+  margin: 12px 0px;
 }
 
-/* Styles the lightbox image, centers it vertically and horizontally, adds the zoom-in transition and makes it responsive using a combination of margin and absolute positioning */
-
-.lightbox-target img {
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  max-height: 0%;
-  max-width: 0%;
-  border: 3px solid white;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, .3);
-  box-sizing: border-box;
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
-  transition: .5s ease-in-out;
+@media (max-width: 500px) {
+  .photo-div {
+    -webkit-column-count: 1;
+    /* Chrome, Safari, Opera */
+    -moz-column-count: 1;
+    /* Firefox */
+    column-count: 1;
+  }
 }
 
-/* Styles the close link, adds the slide down transition */
+/* end of photos */
 
-a.lightbox-close {
-  display: block;
-  width: 50px;
+/*trending*/
+
+#dot {
+  margin-top: -28px;
+  margin-left: -899px;
+  font-size: 42px;
+  color: #f15151;
+}
+
+#display {
+  display: inline;
+  margin-bottom: 0px;
+}
+
+#large {
+  display: inline;
+  cursor: pointer;
+  position: relative;
+  top: -48px;
+  left: 805px;
+  font-size: 20px;
+  margin-left: 100px;
+  border-radius: 0px;
+  color: #111;
+  vertical-align: middle;
+  fill: #999;
+  outline: none;
+  border-style: none;
+}
+
+#pause {
+  display: inline;
+  cursor: pointer;
+  position: relative;
+  top: -40px;
+  left: 750px;
+  font-size: 27px;
+  margin-right: 26px;
+  border-radius: 0px;
+  color: #999;
+  border-style: none;
+  transform: rotate(180deg);
+}
+
+#trending {
+  display: inline;
+  font-size: 18px;
+  color: #111;
+  cursor: pointer;
+  margin-left: -999px;
+}
+
+#new {
+  display: inline;
+  margin-left: 20px;
+  margin-bottom: 0px;
+  font-size: 18px;
+  color: #999;
+  cursor: pointer;
+}
+
+#new:hover {
+  color: #111;
+  cursor: pointer;
+}
+
+/*zooming inage*/
+
+.zoomin img {
+  height: 200px;
+  width: 200px;
+  -webkit-transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  transition: all 2s ease;
+}
+
+.zoomin img:hover {
+  width: 300px;
+  height: 300px;
+}
+
+/*tags*/
+
+#tagss {
+  margin-top: -20px;
+  margin-left: 20px;
+  margin-right: 0px;
+}
+
+#tag {
+  border-radius: 5px;
   height: 50px;
-  box-sizing: border-box;
-  background: white;
-  color: black;
-  text-decoration: none;
+  width: 115px;
+  margin-right: 10px;
+  background-color: grey;
+}
+
+#tag:hover {
+  cursor: pointer;
+}
+
+#tagname {
   position: absolute;
-  top: -80px;
-  right: 0;
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
-  transition: .5s ease-in-out;
+  margin-top: 15px;
+  margin-left: 14px;
+  color: #fff;
+  font-size: 16px;
 }
 
-/* Provides part of the "X" to eliminate an image from the close link */
-
-a.lightbox-close:before {
-  content: "";
-  display: block;
-  height: 30px;
-  width: 1px;
-  background: black;
-  position: absolute;
-  left: 26px;
-  top: 10px;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
+#cover {
+  border-radius: 5px;
+  margin-left: -15px;
+  height: 50px;
+  width: 115px;
 }
 
-/* Provides part of the "X" to eliminate an image from the close link */
-
-a.lightbox-close:after {
-  content: "";
-  display: block;
-  height: 30px;
-  width: 1px;
-  background: black;
-  position: absolute;
-  left: 26px;
-  top: 10px;
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-/* Uses the :target pseudo-class to perform the animations upon clicking the .lightbox-target anchor */
-
-.lightbox-target:target {
-  opacity: 1;
-  top: 150px;
-  bottom: 50px;
-}
-
-.lightbox-target:target img {
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.lightbox-target:target a.lightbox-close {
-  top: 0px;
+#cover:hover {
+  opacity: 0.80;
 }
 
 .grey {
@@ -203,4 +237,16 @@ a.lightbox-close:after {
 
 .glyphicon-option-horizontal {
   font-size: 20px;
+}
+
+/*single photo*/
+
+.avatar {
+  text-align: left;
+  width: 53px;
+}
+
+.download {
+  text-align: right;
+  margin-top: -57px;
 }
