@@ -1,48 +1,54 @@
 {%extends 'all-gallery/base.html'%} {% block content %} {{block.super}} {% load static %}
 <div class="container-fluid">
-  <div class="row">
-    <ul>
-      {% for tag in tags%}
-      <div class="col-md-1">
-        <a href="{% url 'tag' tag.id%}"><img src="{{tag.image.url}}" alt="{{tag.name}}" height="40px" width="100%"></a> {{tag.name}}
-      </div>
-      {% endfor %}
-    </ul>
+  <div class="row" id="tagss">
+    {% for tag in tags %}
+    <div class="col-xs-2 col-sm-2 col-md-12 col-lg-1" id="tag">
+      <h4 class="text-center" id="tagname">{{tag.name}}</h4>
+      <a href="{% url 'tag' tag.id%}"><img src="{{tag.image.url}}" alt="{{tag.name}}" height="40px" width="100%" id="cover"></a>
+    </div>
+    {% endfor %}
   </div>
 </div>
 
 <div class="container text-left">
   <h1>Unsplash</h1>
   <h4>Beautiful, free photos. <br>
+
 Gifted by the world’s most generous community of photographers. </h4> <br>
   <button type="button" class="btn btn-default">Submit a Photo</button> <br>
 </div>
 <br>
 <br>
-<div class="col-md-6">
-  <h4>Trending</h4>
-</div>
-<div class="col-md-6">
-  <h4>New</h4>
+<div class="row" id="display">
+  <h3 id="trending">Trending</h3>
+  <h3 id="new">New<br><p id="dot">.<p></h3>
+  <i class="glyphicon glyphicon-th-large" id="large"></i>
+  <i class="glyphicon glyphicon-pause" id="pause"></i>
 </div>
 <!-- display photos -->
-<div class="container">{% for gallery_item in gallery %}
-  <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-    <a class="lightbox" href="#pic">
-      <img src="{{gallery_item.image.url}} " class="img-responsive " alt="Image "></a> {% for tag in gallery_item.tags.all %}
-    <button type="button " name="button "><small>{{tag.name}}</small></button> {% endfor %}
-    <div class="col-md-6 col-sm-12 col-xs-12 col-lg-4">
-      <div class="lightbox-target" id="pic">
-        <img src="{{gallery_item.image.url}} " class="img-responsive " alt="Image ">
-        <a class="lightbox-close" href="#"></a>
-      </div>
+<div class="col-md-12">
+  <div class="photo-div">
+
+    {% for gallery_item in gallery %}
+    <div class="image-container">
+      <a href="{% url 'gallery' gallery_item.id %}">
+        <div class="none"></div>
+        <img src="{{gallery_item.image.url}}" alt="Image" class="img-responsive home-image" id="myImg">
+      </a>
     </div>
+    {% empty %}
+    <div class="row">
+      <h2 class="text-center">There are no images</h2>
+    </div>
+    {% endfor %}
+
   </div>
 </div>
-
-<!-- page empty -->
-{% empty %}
-<div class="row ">
-  <h2 class="text-center ">There is no Photos available</h2>
+<!-- footer -->
+<div class="footer">
+  <span class="footer"><i class="fa fa-camera fa-4x" aria-hidden="true"></i></span>
+  <br>
+  <span class="copy-right"> ©2017 Mweru Muchai unsplashed-Clone</span>
 </div>
-{% endfor %} {% endblock %}
+
+{% endblock %}
